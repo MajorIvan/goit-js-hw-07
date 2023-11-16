@@ -1,4 +1,32 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
-console.log(galleryItems);
+const container = document.querySelector('.gallery');
+
+container.insertAdjacentHTML('beforeend', createMarkup(galleryItems));
+
+function createMarkup(arr) {
+    return arr.map(({ preview, description }, index) => 
+        `<li data-id='${index}' class='item gallery-item'>
+            <img src='${preview}' alt='${description}' width='300'>
+    `).join('');
+};
+
+container.addEventListener('click', handleClick);
+
+function handleClick(event) {
+    if(event.target === event.currentTarget) {
+        return;
+    };
+    
+    const currentImage = event.target.closest ('.gallery-item');
+    const imageId = +currentImage.dataset.id;
+
+    const instance = basicLightbox.create(`
+    <div class='modal'>
+        <img src='${galleryItems[imageId].original}' alt='${galleryItems[imageId].description}'>
+    </div>
+    `);
+
+    instance.show();
+};

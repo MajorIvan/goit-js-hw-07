@@ -21,7 +21,7 @@ function createMarkup(arr) {
     `).join('');
 };
 
-let gallery = new SimpleLightbox('.gallery_item a', {
+const gallery = new SimpleLightbox('.gallery_item a', {
     captionsData: 'alt',
     captionDelay: 250,
     overlayOpacity: 0.5

@@ -41,22 +41,5 @@ function handleClick(event) {
     `);
 
     instance.show();
+
 };
-
-
-// isModalOpen = true;
-
-// // Додаємо прослуховування клавіатури тільки після відкриття модального вікна
-// window.addEventListener('keydown', handleKeyDown);
-
-// function handleKeyDown(event) {
-//   // Перевірка, чи натискана клавіша Escape
-//   if (event.code === 'Escape' && isModalOpen) {
-//     // Закриття модального вікна
-//     instance.close();
-//     isModalOpen = false;
-//     // Видалення прослуховування клавіатури після закриття модального вікна
-//     window.removeEventListener('keydown', handleKeyDown);
-//   }
-// }
-// }

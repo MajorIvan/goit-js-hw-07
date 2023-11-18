@@ -2,10 +2,9 @@ import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
 const container = document.querySelector('.gallery');
-
-container.insertAdjacentHTML('beforeend', createMarkup(galleryItems));
 container.style.justifyItems = 'center';
 
+container.insertAdjacentHTML('beforeend', createMarkup(galleryItems));
 function createMarkup(arr) {
     return arr.map(({ preview, original, description }, index) => 
         `<li data-id='${index}' class="gallery_item">
@@ -23,7 +22,6 @@ function createMarkup(arr) {
 };
 
 container.addEventListener('click', handleClick);
-
 function handleClick(event) {
     event.preventDefault();
 
@@ -35,11 +33,17 @@ function handleClick(event) {
     const imageId = +currentImage.dataset.id;
 
     const instance = basicLightbox.create(`
-    <div class='modal'>
-        <img src='${galleryItems[imageId].original}' alt='${galleryItems[imageId].description}'>
-    </div>
+        <div class='modal'>
+            <img src='${galleryItems[imageId].original}' alt='${galleryItems[imageId].description}'>
+        </div>
     `);
-
     instance.show();
 
+    container.addEventListener('keydown', handleKeyDown);
+    function handleKeyDown(event) {
+        if (event.code === 'Escape') {
+            instance.close();
+        };
+    };
 };
+

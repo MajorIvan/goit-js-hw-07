@@ -33,11 +33,13 @@ function handleClick(event) {
     const imageId = +currentImage.dataset.id;
 
     const instance = basicLightbox.create(`
-        <div class='modal'>
-            <img src='${galleryItems[imageId].original}' alt='${galleryItems[imageId].description}'>
-        </div>
+        <img src='${galleryItems[imageId].original}' alt='${galleryItems[imageId].description}'>
     `);
     instance.show();
+
+    // onShow: (instance) => {},
+
+	// onClose: (instance) => {}
 
     container.addEventListener('keydown', handleKeyDown);
     function handleKeyDown(event) {

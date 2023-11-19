@@ -34,14 +34,17 @@ function handleClick(event) {
 
     const instance = basicLightbox.create(`
         <img src='${galleryItems[imageId].original}' alt='${galleryItems[imageId].description}'>
-    `);
+    `, {
+        onShow: (instance) => {
+            container.addEventListener('keydown', handleKeyDown);
+        },
+    
+        onClose: (instance) => {
+            container.removeEventListener('keydown', handleKeyDown);
+        }
+    });
     instance.show();
 
-    // onShow: (instance) => {},
-
-	// onClose: (instance) => {}
-
-    container.addEventListener('keydown', handleKeyDown);
     function handleKeyDown(event) {
         if (event.code === 'Escape') {
             instance.close();
